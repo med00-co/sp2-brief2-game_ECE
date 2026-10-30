@@ -1,1 +1,11 @@
 @import "tailwindcss";
+@theme {
+  --color-empereur: #d4af37;
+  --color-fond: #14110f;
+  --color-carte: #241e1a;
+  --color-citoyen: #5b8def;
+  --color-esclave: #9b2c2c;
+  --color-texte: #f3ead7;
+  --color-succes: #3f9b5f;
+  --font-titre: "Cinzel", serif;
+}

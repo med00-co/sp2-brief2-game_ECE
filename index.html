@@ -13,7 +13,7 @@
 
 
   <link href="./styleCSS/output.css" rel="stylesheet">
-  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/main.js" defer></script>
 </head>
 <!-- bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../image/bg4.jpg')] bg-cover bg-center bg-fixed -->
 <body class="bg-[linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../assets/images/bg.jpg')] bg-cover bg-center min-h-screen text-texte font-texte bg-fixed">          
@@ -53,18 +53,18 @@
             </label>
 
             <label>
-              <input type="radio" name="avatar" value="elphant" class="peer sr-only">
+              <input type="radio" name="avatar" value="elephant" class="peer sr-only">
               <img src="./assets/images/avatars/elephant.jpg" alt="avatar elephant" class="w-14 h-14 rounded-full object-cover peer-checked:ring-2  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
             </label>
 
             <label>
               <input type="radio" name="avatar" value="lion" class="peer sr-only">
-              <img src="./assets/images/avatars/lion.png" alt="avatar lion" class="w-14 h-14 rounded-full object-cover peer-checked:ring-2  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+              <img src="./assets/images/avatars/lion.jpg" alt="avatar lion" class="w-14 h-14 rounded-full object-cover peer-checked:ring-2  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
             </label>
 
             <label>
               <input type="radio" name="avatar" value="fox" class="peer sr-only">
-              <img src="./assets/images/avatars/fox.png" alt="avatar fox" class="w-14 h-14 rounded-full object-cover peer-checked:ring-2  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+              <img src="./assets/images/avatars/fox.jpg" alt="avatar fox" class="w-14 h-14 rounded-full object-cover peer-checked:ring-2  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
             </label>
 
             <label>
@@ -90,7 +90,7 @@
         </form>
       </div>
 
-      <div id="bloc-liste" class="md:col-span-2 text-center border shadow-xl shadow-black/40 border-empereur/40 backdrop-blur-sm rounded-lg bg-carte/80 p-6">
+      <div id="bloc-liste" class="md:col-span-2 text-center border shadow-xl shadow-black/40 border-empereur/40 backdrop-blur-sm rounded-lg bg-carte/80 p-6 ">
         <h2 class="border-b-2 border-empereur text-empereur font-bold font-titre py-2 rounded-lg   text-xl tracking-widest uppercase">Joueurs</h2>
         <p id="aucun-joueur" class="text-white/60 italic   border border-dashed border-white/20 rounded-lg p-8">Aucun joueur pour le moment. </p>
         <div id="liste-joueurs" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>

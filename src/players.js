@@ -35,3 +35,9 @@ export const ajouterJoueur = ({ nickname, avatar }) => {
 
 export const choisirJoueur = (id) => ecrire(CLE_CHOISI, id);
 export const getJoueurChoisi = () => lire(CLE_CHOISI, null);
+
+// hna bdit knkhli lbuttonat khdamin 
+export const getJoueurParId = (id) => {
+    return getJoueurs().find((je)=> je.id == id)
+}
+

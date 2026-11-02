@@ -1,5 +1,9 @@
-import { validerPseudo, ajouterJoueur, getJoueurs } from "./players.js";
-import { afficherErreur, afficherJoueurs } from "./ui.js";
+import {
+  validerPseudo, ajouterJoueur, getJoueurs,
+  choisirJoueur, getJoueurChoisi, getJoueurParId
+} from "./players.js";
+
+import { afficherErreur, afficherJoueurs, afficherJoueurChoisi } from "./ui.js";
 
 const form = document.getElementById("form-joueur");
 
@@ -13,10 +17,28 @@ form.addEventListener("submit", (e) => {
   afficherErreur("erreur-pseudo", erreurPseudo);
   afficherErreur("erreur-avatar", avatarChoisi ? "" : "Choisis un avatar");
 
+  if (erreurPseudo || !avatarChoisi) return;
 
-  if(erreurPseudo || !avatarChoisi) return ;
-  ajouterJoueur({ nickname: pseudo, avatar: avatarChoisi.value })
-  afficherJoueurs(getJoueurs())
-  form.reset()
+  ajouterJoueur({ nickname: pseudo, avatar: avatarChoisi.value });
+  afficherJoueurs(getJoueurs(), getJoueurChoisi());
+  form.reset();
 });
-afficherJoueurs(getJoueurs())
+
+const listeJoueurs = document.getElementById("liste-joueurs");
+
+listeJoueurs.addEventListener("click", (event) => {
+  const bouton = event.target.closest("[data-action]");
+  if (!bouton) return;
+
+  const { id, action } = bouton.dataset;
+
+  if (action === "choisir") {
+    choisirJoueur(id);
+    afficherJoueurs(getJoueurs(), id);
+    afficherJoueurChoisi(getJoueurParId(id));
+  }
+});
+
+
+afficherJoueurs(getJoueurs(), getJoueurChoisi());
+afficherJoueurChoisi(getJoueurParId(getJoueurChoisi()));

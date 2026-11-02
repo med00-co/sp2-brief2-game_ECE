@@ -13,16 +13,20 @@
 
 
   <link href="./styleCSS/output.css" rel="stylesheet">
-  <script type="module" src="./src/main.js" defer></script>
+  <script type="module" src="./src/main.js"></script>
 </head>
 <!-- bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../image/bg4.jpg')] bg-cover bg-center bg-fixed -->
 <body class="bg-[linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../assets/images/bg.jpg')] bg-cover bg-center min-h-screen text-texte font-texte bg-fixed">          
-  <header class="bg-carte flex flex-wrap justify-between mx-auto max-w-7xl mx-4 rounded-md  mt-6 shadow-lg shadow-black/50 backdrop-blur-sm  border border-empereur/40  items-center">
+  <header class="bg-carte flex flex-wrap justify-between mx-auto max-w-7xl  rounded-md  mt-6 shadow-lg shadow-black/50 backdrop-blur-sm  border border-empereur/40  items-center">
     <div class="flex flex-wrap px-4 items-center">
       <img src="./assets/images/logo.png" alt="logo of the game" class="h-18">
-      <h1 class="text-texte text-2xl font-titre font-bold py-4 tracking-wide">Emperor, Citizen, Slave</h1>
+      <div class="flex flex-col">
+        <h1 class="text-texte text-2xl font-titre font-bold py-2 tracking-wide">Emperor, Citizen, Slave</h1>
+        <span id="joueur-actif" class="ml-4 text-sm text-empereur  -mt-2  tracking-widest uppercase"></span>
+      </div>
     </div>
-
+    
+ 
     <nav class="text-white flex gap-x-8 px-4 py-1 m-4 rounded-lg mr-6 bg-empereur/20 ">
       <a href="#" class="px-4 py-1 rounded-md transition hover:bg-empereur/50 bg-empereur font-titre font-bold" data-section="profils">Joueurs</a>
       <a href="#" class="px-4 py-1 rounded-md transition hover:bg-empereur/50 font-titre" data-section="historique">Historique</a>

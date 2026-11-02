@@ -2,10 +2,11 @@ export const afficherErreur = (idElement, message) => {
   document.getElementById(idElement).textContent = message;
 };
 
-export const afficherJoueurs = (liste) => {
+export const afficherJoueurs = (liste , idChoisi = null) => {
   const conteneur = document.getElementById("liste-joueurs");
   const vide = document.getElementById("aucun-joueur");
 
+  
 
   if(liste.length == 0){
     vide.classList.remove('hidden')
@@ -14,7 +15,7 @@ export const afficherJoueurs = (liste) => {
     vide.classList.add('hidden')
   }
   conteneur.innerHTML = liste.map(({ id, nickname, avatar }) => `
-  <article class="overflow-hidden rounded-xl border border-empereur/40 bg-carte/80 backdrop-blur-sm shadow-lg shadow-black/40 transition hover:-translate-y-1 hover:shadow-xl">
+  <article class="player overflow-hidden rounded-xl border border-empereur/40 bg-carte/80 backdrop-blur-sm shadow-lg shadow-black/40 transition hover:-translate-y-1 hover:shadow-xl ${id === idChoisi ? "ring-4 ring-orange-500" : ""}">
 
     <div class="h-16 bg-linear-to-r from-empereur/60 via-empereur/30 to-esclave/30"></div>
 
@@ -31,9 +32,19 @@ export const afficherJoueurs = (liste) => {
         <button type="button" data-action="supprimer" data-id="${id}"
           class="cursor-pointer rounded-md bg-esclave/20 py-2 text-sm font-titre font-bold uppercase tracking-wide text-red-300 transition hover:bg-esclave/50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-esclave">Supprimer</button>
         <button type="button" data-action="choisir" data-id="${id}"
-          class="col-span-2 cursor-pointer rounded-md bg-empereur py-2 text-sm font-titre font-bold uppercase tracking-wide text-fond transition hover:bg-empereur/80 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-empereur">Choisir</button>
+          class="col-span-2 cursor-pointer rounded-md bg-empereur py-2 text-sm font-titre font-bold uppercase tracking-wide text-fond transition hover:bg-empereur/80 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-empereur disabled:bg-none disabled:bg-empereur/30 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-empereur disabled:active:scale-100" ${id === idChoisi ? "disabled" : ""} >${id === idChoisi ? "Sélectioné" : "Choisir"}</button>
       </div>
     </div>
   </article>
 `).join("")
+
+
 };
+
+
+// hna lkhtwa 3 bach nkhli les buttons khdamin 
+export const afficherJoueurChoisi = (joueur) =>{
+  const joueurActif = document.getElementById('joueur-actif')
+  joueurActif.textContent = joueur ? joueur.nickname : "Aucun joueur sélectionné";
+}
+

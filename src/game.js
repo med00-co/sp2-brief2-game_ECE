@@ -30,22 +30,46 @@ export const creerMain = (camp) =>{
 }
 
 // lmo3askar dyal la3ib: hiya li kat3tih lwra9 li ghayl3B BIHOW WACH FIHOM 3bd wla emperor
-const getCamp = (manche) => {}
+export const getCamp = (manche) => {
+    if((Math.ceil(manche / 3)) % 2 === 0){
+        return SLAVE_CARD ;
+    }else{
+        return EMPEREUR_CARD; 
+    }
+}
 
 // lmo3askar dyal computer li khasso ykon 3kss dyal player
-const campAdverse = (camp) =>{}
+export const campAdverse = (camp) =>{
+    let verseCamp = camp === EMPEREUR_CARD ?  SLAVE_CARD :  EMPEREUR_CARD
+    return verseCamp ;
+}
 
 // chkon ghayl3b how lwl
-const premierJoueur = (indexDuel) =>{}
+export const premierJoueur = (indexDuel) =>{
+    return indexDuel % 2 === 0 ?  EMPEREUR_CARD :  SLAVE_CARD
+    
+}
+
 
 // lwr9a li ghaykhtarha lcomputer whna ghankhdmo b Math.random w Math.floor
-const choisirCarteOrdi = (main)=>{}
+export const choisirCarteOrdi = (main)=>{
+    let num = Math.floor(Math.random() * main.length) 
+    return num 
+    
+}
 
 // anhydo biha lwra9
-const retirerCarte = (main, index) =>{}
+export const retirerCarte = (main, index) =>{
+    return   main.filter((card , id) => id !== index)
+     
+}
+
 
 // ni9at li ghat3ta wch 1 wla 5
-const points = (camp) =>{}
+export const points = (camp) =>{
+    return camp === EMPEREUR_CARD ? 1 : 5
+}
+
 
 // kifach ghatkon lhala lwla fach katl3v flwl
 const creerPartie = ()=> {}

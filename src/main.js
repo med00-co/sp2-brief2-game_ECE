@@ -5,7 +5,8 @@ import {
 
 import { afficherErreur, afficherJoueurs, afficherJoueurChoisi } from "./ui.js";
 
-import { duel , creerMain } from "./game.js";
+import { duel , creerMain , getCamp , campAdverse } from "./game.js";
+
 
 
 

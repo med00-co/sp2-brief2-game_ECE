@@ -60,7 +60,7 @@ export const choisirCarteOrdi = (main)=>{
 
 // anhydo biha lwra9
 export const retirerCarte = (main, index) =>{
-    return   main.filter((card , id) => id !== index)
+    return   main.filter((card , i) => i !== index)
      
 }
 
@@ -72,7 +72,19 @@ export const points = (camp) =>{
 
 
 // kifach ghatkon lhala lwla fach katl3v flwl
-const creerPartie = ()=> {}
+export const creerPartie = ()=> {
+   const campJoueur = getCamp(partieObject.manche)
+   let partieObject = {
+    manche : 1 ,
+    indexDuel : 0 ,
+    scoreJoueur : 0,
+    scoreOrdi : 0 ,
+   }
+   partieObject.mainJoueur = creerMain(campJoueur)
+   partieObject.mainOrdi = creerMain(campAdverse(campJoueur))
+   
+   return partieObject ;
+}
 
 // hadi hiya li ghathkm fl3ba wghatrbt bin functions lkhrin
 const jouerDuel = (etat, indexCarte)=>{}

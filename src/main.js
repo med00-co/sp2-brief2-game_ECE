@@ -5,6 +5,11 @@ import {
 
 import { afficherErreur, afficherJoueurs, afficherJoueurChoisi } from "./ui.js";
 
+import { duel , creerMain , getCamp , campAdverse } from "./game.js";
+
+
+
+
 const form = document.getElementById("form-joueur");
 
 form.addEventListener("submit", (e) => {
@@ -24,7 +29,7 @@ form.addEventListener("submit", (e) => {
   form.reset();
 });
 
-const listeJoueurs = document.getElementById("liste-joueurs");
+const listeJoueurs = document.getElementById("liste-joueurs"); 
 
 listeJoueurs.addEventListener("click", (event) => {
   const bouton = event.target.closest("[data-action]");

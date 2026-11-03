@@ -32,7 +32,7 @@ export const afficherJoueurs = (liste , idChoisi = null) => {
         <button type="button" data-action="supprimer" data-id="${id}"
           class="cursor-pointer rounded-md bg-esclave/20 py-2 text-sm font-titre font-bold uppercase tracking-wide text-red-300 transition hover:bg-esclave/50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-esclave">Supprimer</button>
         <button type="button" data-action="choisir" data-id="${id}"
-          class="col-span-2 cursor-pointer rounded-md bg-empereur py-2 text-sm font-titre font-bold uppercase tracking-wide text-fond transition hover:bg-empereur/80 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-empereur disabled:bg-none disabled:bg-empereur/30 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-empereur disabled:active:scale-100" ${id === idChoisi ? "disabled" : ""} >${id === idChoisi ? "Sélectioné" : "Choisir"}</button>
+          class="col-span-2 cursor-pointer rounded-md bg-empereur py-2 text-sm font-titre font-bold uppercase tracking-wide text-fond transition hover:bg-empereur/80 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-empereur disabled:bg-none disabled:bg-empereur/30 disabled:opacity-60 disabled:cursor-not-allowed disabled:text-white disabled:hover:bg-empereur disabled:active:scale-100" ${id === idChoisi ? "disabled" : ""} >${id === idChoisi ? "Sélectioné" : "Choisir"}</button>
       </div>
     </div>
   </article>

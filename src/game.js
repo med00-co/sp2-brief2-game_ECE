@@ -73,21 +73,76 @@ export const points = (camp) =>{
 
 // kifach ghatkon lhala lwla fach katl3v flwl
 export const creerPartie = ()=> {
-   const campJoueur = getCamp(partieObject.manche)
+   
    let partieObject = {
     manche : 1 ,
     indexDuel : 0 ,
     scoreJoueur : 0,
     scoreOrdi : 0 ,
    }
+   let campJoueur = getCamp(partieObject.manche)
    partieObject.mainJoueur = creerMain(campJoueur)
    partieObject.mainOrdi = creerMain(campAdverse(campJoueur))
    
    return partieObject ;
 }
 
+console.log(choisirCarteOrdi(creerPartie().mainOrdi))
+console.log(creerPartie().mainOrdi[choisirCarteOrdi(creerPartie().mainOrdi)])
+
 // hadi hiya li ghathkm fl3ba wghatrbt bin functions lkhrin
-const jouerDuel = (etat, indexCarte)=>{}
+export const jouerDuel = (etat, indexCarte)=>{
+    let campPlayer = getCamp(etat.manche)
+    let campOrdi = campAdverse(getCamp(etat.manche))
+    
+    let cartePlayer = etat.mainJoueur[indexCarte]
+
+    let indexCarteOrdi = choisirCarteOrdi(etat.mainOrdi)
+    let carteOrdi = etat.mainOrdi[indexCarteOrdi]
+
+    let duelResultat = duel(cartePlayer, carteOrdi)
+
+    // p2: halat ta3adol w rba7 w lkhassara
+    if(duelResultat === "égalité"){
+        let newMainJoueur = retirerCarte(etat.mainJoueur , indexCarte);
+        let newMainOrdi = retirerCarte(etat.mainOrdi , indexCarteOrdi);
+        let newEtat = {...etat, indexDuel : etat.indexDuel + 1 , mainJoueur : newMainJoueur, mainOrdi: newMainOrdi }
+        let rapport = {
+            newEtat ,
+            cartePlayer ,
+            carteOrdi,
+            resultat : duelResultat  , 
+            mancheTerminee : false ,
+        }
+
+        return rapport ; 
+    }
+    else if(duelResultat == "victoire"){
+        let newEtat = {...etat, scoreJoueur : etat.scoreJoueur + points(campPlayer) }
+        let rapport = {
+            newEtat ,
+            cartePlayer ,
+            carteOrdi,
+            resultat : duelResultat  , 
+            mancheTerminee : true ,
+        }
+
+        return rapport ; 
+    }
+    else if(duelResultat == "défaite"){
+        let newEtat = {...etat, scoreOrdi : etat.scoreOrdi + points(campOrdi) }
+        let rapport = {
+            newEtat ,
+            cartePlayer ,
+            carteOrdi,
+            resultat : duelResultat  , 
+            mancheTerminee : true ,
+        }
+
+        return rapport ;
+    }
+
+}
 
 // ila salat ljawla  ghanbdaw bhadi ljawla khra 
 const nouvelleManche = (etat) =>{}

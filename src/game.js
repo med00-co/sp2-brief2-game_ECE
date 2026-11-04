@@ -1,6 +1,7 @@
 export const EMPEREUR_CARD = "empereur"
 export const CITIZEN_CARD = "citoyen"
 export const SLAVE_CARD = "esclave"
+export const NB_MANCHES = 12
 // hadi hiya li kat returner lina victoire wla game over wla ta3adol 
 export const duel = (carteJoueur, carteOrdi) =>{
     if(carteJoueur== EMPEREUR_CARD && carteOrdi== CITIZEN_CARD){
@@ -87,8 +88,7 @@ export const creerPartie = ()=> {
    return partieObject ;
 }
 
-console.log(choisirCarteOrdi(creerPartie().mainOrdi))
-console.log(creerPartie().mainOrdi[choisirCarteOrdi(creerPartie().mainOrdi)])
+
 
 // hadi hiya li ghathkm fl3ba wghatrbt bin functions lkhrin
 export const jouerDuel = (etat, indexCarte)=>{
@@ -159,7 +159,23 @@ export const nouvelleManche = (etat) =>{
 
 
 // wach sala lmatch , y3ni wch salat 12 jawla  
-const estTerminee= (etat)=>{}
+export const estTerminee= (etat)=>{
+    return etat.manche === NB_MANCHES ;
+}
+
 
 // hadi ghat9arn lina mjmo3 dn9ati dl3aba wghat returner lina najah khasar ta3adol
-const resultatFinal = (etat)=>{}
+export const resultatFinal = (etat)=>{
+    let scorePlayer = etat.scoreJoueur 
+    let scoreOrdi = etat.scoreOrdi
+
+    if(scorePlayer > scoreOrdi){
+        return "victoire"
+    }
+    else if(scorePlayer < scoreOrdi){
+        return "défaite"
+    }
+    else{
+        return "égalité"
+    }
+}

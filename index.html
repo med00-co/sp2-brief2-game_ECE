@@ -22,7 +22,7 @@
       <img src="./assets/images/logo.png" alt="logo of the game" class="h-18">
       <div class="flex flex-col">
         <h1 class="text-texte text-2xl font-titre font-bold py-2 tracking-wide">Emperor, Citizen, Slave</h1>
-        <span id="joueur-actif" class="ml-4 text-sm text-empereur  -mt-2  tracking-widest uppercase border border-esclave/50 max-w-30 px-2"></span>
+        <span id="joueur-actif" class="inline-flex items-center gap-2 w-fit rounded-full bg-empereur/15 border border-empereur/40  px-3 py-0.5 text-xs uppercase tracking-widest text-empereur truncate max-w-48"></span>
       </div>
     </div>
     
@@ -103,14 +103,14 @@
 
 
 <!-- section 2 : game --------------------------------------------------- -->
-    <section id="jeu" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm">
+    <section id="jeu" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm my-10">
       <div id="msg-pas-joueur"  class="text-center py-10  ">
         <p class="text-xl text-white/80 mb-4 ">Choisis un joueur pour jouer</p>
       </div>
       
-      <div id="zone-lancer" class="text-center py-8 hidden">
+      <div id="zone-lancer" class="text-center py-8 hidden ">
         <button id="btn-lancer" type="button"
-        class="bg-empereur px-8 py-3 rounded-md font-titre font-bold text-fond text-lg hover:bg-empereur/80 active:scale-95 transition">
+        class="bg-linear-to-r from-empereur/80 via-empereur/20 to-esclave/80 px-8 py-3 rounded-md font-titre font-bold text-red-200 text-lg hover:bg-empereur/80 active:scale-95 transition">
         Lancer la partie
         </button>
       </div>

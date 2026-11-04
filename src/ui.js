@@ -95,7 +95,7 @@ export const afficherMainOrdi = (main) => {
   content.innerHTML = main.map(()=> `
    <div class="w-20 h-28 rounded-lg border border-white/20 bg-black/50 shadow-md
                 flex items-center justify-center text-white/30 text-2xl">
-      ?
+      <img src="./assets/cards/backCart.jpg" alt="back of card " class="w-full h-full">
     </div>
   `).join("")
 }

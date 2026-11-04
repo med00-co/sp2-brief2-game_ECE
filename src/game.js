@@ -117,7 +117,7 @@ export const jouerDuel = (etat, indexCarte)=>{
 
         return rapport ; 
     }
-    else if(duelResultat == "victoire"){
+    else if(duelResultat === "victoire"){
         let newEtat = {...etat, scoreJoueur : etat.scoreJoueur + points(campPlayer) }
         let rapport = {
             newEtat ,
@@ -129,7 +129,7 @@ export const jouerDuel = (etat, indexCarte)=>{
 
         return rapport ; 
     }
-    else if(duelResultat == "défaite"){
+    else if(duelResultat === "défaite"){
         let newEtat = {...etat, scoreOrdi : etat.scoreOrdi + points(campOrdi) }
         let rapport = {
             newEtat ,
@@ -145,7 +145,18 @@ export const jouerDuel = (etat, indexCarte)=>{
 }
 
 // ila salat ljawla  ghanbdaw bhadi ljawla khra 
-const nouvelleManche = (etat) =>{}
+export const nouvelleManche = (etat) =>{
+    let numManche = etat.manche + 1
+    let pyCamp = getCamp(numManche)
+    let OrdiCamp = campAdverse(pyCamp)
+
+    let pyCartes = creerMain(pyCamp)
+    let OrdiCartes = creerMain(OrdiCamp)
+
+    let newEtat = {...etat ,manche : numManche, mainJoueur : pyCartes , mainOrdi: OrdiCartes, indexDuel : 0, } 
+    return newEtat ;
+}
+
 
 // wach sala lmatch , y3ni wch salat 12 jawla  
 const estTerminee= (etat)=>{}

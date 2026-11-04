@@ -48,3 +48,14 @@ export const afficherJoueurChoisi = (joueur) =>{
   joueurActif.textContent = joueur ? joueur.nickname : "Aucun joueur sélectionné";
 }
 
+// functions dyal partie 2 , nkhli lgame khdama
+export const afficherSection = (nom) =>{
+  const sections = document.querySelectorAll('section')
+  
+  sections.forEach((sect)=>{
+    sect.classList.add('hidden')
+    if(sect.id == nom){
+      sect.classList.remove('hidden')
+    }
+  })
+}

@@ -11,7 +11,7 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-
+ 
   <link href="./styleCSS/output.css" rel="stylesheet">
   <script type="module" src="./src/main.js"></script>
 </head>
@@ -101,7 +101,78 @@
       </div>
     </section>
 
-    <section id="jeu" class="hidden"></section>
+
+<!-- section 2 : game --------------------------------------------------- -->
+    <section id="jeu" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm">
+      <div id="msg-pas-joueur" , class="text-center py-10">
+        <p class="text-xl text-white/80 mb-4  hidden">Choisis un joueur pour jouer</p>
+      </div>
+      
+      <div id="zone-lancer" class="text-center py-8 hidden">
+        <button id="btn-lancer" type="button"
+        class="bg-empereur px-8 py-3 rounded-md font-titre font-bold text-fond text-lg hover:bg-empereur/80 active:scale-95 transition">
+        Lancer la partie
+        </button>
+      </div>
+      
+
+      <div id="zone-jeu" class="hidden">
+
+       <div class="grid grid-cols-2 md:grid-cols-6 gap-2 text-center mb-8">
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Manche</p>
+          <p class="text-xl font-titre font-bold text-empereur"><span id="info-manche">1</span> / 12</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Camp</p>
+          <p id="info-camp" class="text-xl font-titre font-bold text-citoyen">Empereur</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Score Joueur</p>
+          <p id="score-joueur" class="text-xl font-titre font-bold text-empereur">0</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Score Ordi</p>
+          <p id="score-ordi" class="text-xl font-titre font-bold text-esclave">0</p>
+        </div>
+       </div>
+
+       <div class="mb-6">
+        <p class="text-center text-sm uppercase tracking-widest text-white/40 mb-2">Ordinateur</p>
+        <div id="main-ordi" class="flex justify-center gap-2 flex-wrap"></div>
+       </div>
+
+       <!-- lwsst blassa dl3b -->
+       <div id="zone-duel" class="flex items-center justify-center gap-8 my-8 min-h-36">
+        <div id="carte-joueur-jouee" class="w-20 h-28 rounded-lg border border-white/20 bg-black/40"></div>
+
+        <span class="text-2xl font-titre font-bold text-empereur">VS</span>
+
+        <div id="carte-ordi-jouee" class="w-20 h-28 rounded-lg border border-white/20 bg-black/40"></div>
+       </div>
+        <!-- --------------------------- -->
+       <p id="resultat-duel" class="text-center text-lg font-titre font-bold min-h-8 mb-6"></p>
+
+       <div>
+        <p class="text-center text-sm uppercase tracking-widest text-white/40 mb-2">Tes Cartes</p>
+        <div id="main-joueur" class="flex justify-center gap-2 flex-wrap"></div>
+       </div>
+
+      </div>
+
+      
+
+      <div id="zone-fin" class="text-center py-10 hidden">
+         <p id="msg-fin" class="text-2xl font-titre font-bold mb-4"></p>
+         <button id="btn-rejouer" type="button"
+         class="bg-citoyen px-6 py-2 rounded-md font-titre font-bold text-fond hover:bg-citoyen/80 transition">
+          Rejouer
+         </button>
+      </div>
+    </section>
 
     <section id="historique" class="hidden" ></section>
   </main>

@@ -3,7 +3,7 @@ import {
   choisirJoueur, getJoueurChoisi, getJoueurParId
 } from "./players.js";
 
-import { afficherErreur, afficherJoueurs, afficherJoueurChoisi } from "./ui.js";
+import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection, } from "./ui.js";
 
 import { duel , creerMain , getCamp , campAdverse } from "./game.js";
 
@@ -14,7 +14,7 @@ const form = document.getElementById("form-joueur");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
+   
   const pseudo = document.getElementById("pseudo").value.trim();
   const avatarChoisi = document.querySelector('input[name="avatar"]:checked');
 
@@ -47,3 +47,15 @@ listeJoueurs.addEventListener("click", (event) => {
 
 afficherJoueurs(getJoueurs(), getJoueurChoisi());
 afficherJoueurChoisi(getJoueurParId(getJoueurChoisi()));
+
+// partie 2 , nkhli lgame khdama
+const navs = document.querySelectorAll('[data-section]')
+navs.forEach((nav)=>{
+   nav.addEventListener('click' , function(event){
+       event.preventDefault()
+       let navSection = nav.dataset.section
+       afficherSection(navSection)
+   })
+})
+
+

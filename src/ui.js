@@ -1,4 +1,5 @@
 import { getCamp, premierJoueur , getGroupe  } from "./game.js";
+import { compterParties } from "./history.js";
 
 
 export const afficherErreur = (idElement, message) => {
@@ -27,7 +28,7 @@ export const afficherJoueurs = (liste , idChoisi = null) => {
         class="-mt-10 h-30 w-30 rounded-full object-cover ring-4 ring-carte border-2 border-empereur shadow-lg">
 
       <p class="mt-3 w-full truncate font-titre text-lg font-bold uppercase tracking-wide text-texte">${nickname}</p>
-      <p class="mt-1 rounded-full bg-black/30 px-3 py-0.5 text-xs uppercase tracking-widest text-white/60">0 partie</p>
+      <p class="mt-1 rounded-full bg-black/30 px-3 py-0.5 text-xs uppercase tracking-widest text-white/60">${compterParties(id)} ${compterParties(id)> 1 ? "parties": "partie"}</p>
 
       <div class="mt-4 grid w-full grid-cols-2 gap-2">
         <button type="button" data-action="modifier" data-id="${id}"
@@ -35,7 +36,7 @@ export const afficherJoueurs = (liste , idChoisi = null) => {
         <button type="button" data-action="supprimer" data-id="${id}"
           class="cursor-pointer rounded-md bg-esclave/20 py-2 text-sm font-titre font-bold uppercase tracking-wide text-red-300 transition hover:bg-esclave/50 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-esclave">Supprimer</button>
         <button type="button" data-action="choisir" data-id="${id}"
-          class="col-span-2 cursor-pointer rounded-md bg-empereur py-2 text-sm font-titre font-bold uppercase tracking-wide text-fond transition hover:bg-empereur/80 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-empereur disabled:bg-none disabled:bg-empereur/30 disabled:opacity-60 disabled:cursor-not-allowed disabled:text-white disabled:hover:bg-empereur disabled:active:scale-100" ${id === idChoisi ? "disabled" : ""} >${id === idChoisi ? "Sélectioné" : "Choisir"}</button>
+          class="col-span-2 cursor-pointer rounded-md bg-empereur py-2 text-sm font-titre font-bold uppercase tracking-wide text-fond transition hover:bg-empereur/80 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-empereur disabled:bg-none disabled:bg-empereur/30 disabled:opacity-60 disabled:cursor-not-allowed disabled:text-white disabled:hover:bg-empereur disabled:active:scale-100" ${id === idChoisi ? "disabled" : ""} >${id === idChoisi ? "Sélectionné" : "Choisir"}</button>
       </div>
     </div>
   </article>

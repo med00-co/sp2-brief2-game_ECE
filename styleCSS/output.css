@@ -38,6 +38,7 @@
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
     --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
     --tracking-wide: 0.025em;
     --tracking-widest: 0.1em;
     --radius-md: 0.375rem;
@@ -660,10 +661,6 @@
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
-  .text-4xl {
-    font-size: var(--text-4xl);
-    line-height: var(--tw-leading, var(--text-4xl--line-height));
-  }
   .text-6xl {
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));
@@ -688,6 +685,10 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
+  .font-extrabold {
+    --tw-font-weight: var(--font-weight-extrabold);
+    font-weight: var(--font-weight-extrabold);
+  }
   .tracking-wide {
     --tw-tracking: var(--tracking-wide);
     letter-spacing: var(--tracking-wide);
@@ -695,6 +696,9 @@
   .tracking-widest {
     --tw-tracking: var(--tracking-widest);
     letter-spacing: var(--tracking-widest);
+  }
+  .text-black {
+    color: var(--color-black);
   }
   .text-citoyen {
     color: var(--color-citoyen);
@@ -710,12 +714,6 @@
   }
   .text-green-400 {
     color: var(--color-green-400);
-  }
-  .text-green-500 {
-    color: var(--color-green-500);
-  }
-  .text-red-200 {
-    color: var(--color-red-200);
   }
   .text-red-300 {
     color: var(--color-red-300);
@@ -812,20 +810,8 @@
   .ring-carte {
     --tw-ring-color: var(--color-carte);
   }
-  .ring-esclave {
-    --tw-ring-color: var(--color-esclave);
-  }
-  .ring-green-200 {
-    --tw-ring-color: var(--color-green-200);
-  }
   .ring-green-300 {
     --tw-ring-color: var(--color-green-300);
-  }
-  .ring-green-500 {
-    --tw-ring-color: var(--color-green-500);
-  }
-  .ring-orange-500 {
-    --tw-ring-color: var(--color-orange-500);
   }
   .ring-white {
     --tw-ring-color: var(--color-white);
@@ -835,12 +821,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       --tw-ring-color: color-mix(in oklab, var(--color-white) 20%, transparent);
     }
-  }
-  .ring-yellow-200 {
-    --tw-ring-color: var(--color-yellow-200);
-  }
-  .ring-yellow-500 {
-    --tw-ring-color: var(--color-yellow-500);
   }
   .outline {
     outline-style: var(--tw-outline-style);

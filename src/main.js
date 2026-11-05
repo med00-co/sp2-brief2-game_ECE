@@ -11,6 +11,7 @@ import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection,
 import {  creerPartie , jouerDuel , nouvelleManche , 
   estTerminee , resultatFinal,
  } from "./game.js";
+import { enregistrerPartie } from "./history.js";
 
 
 
@@ -105,9 +106,12 @@ laMainJoueur.addEventListener('click', (event)=>{
     afficherResultatDuel(rapport.resultat)
     setTimeout(()=>{
       etat = rapport.newEtat
+      const resultat = resultatFinal(etat)
     if(rapport.mancheTerminee){
       if(estTerminee(etat)){
-        afficherFinPartie(resultatFinal(etat), etat.scoreJoueur ,etat.scoreOrdi)
+        afficherFinPartie(resultat, etat.scoreJoueur ,etat.scoreOrdi)
+        enregistrerPartie({playerId: getJoueurChoisi() , playerScore: etat.scoreJoueur ,computerScore: etat.scoreOrdi ,result: resultat})
+        afficherJoueurs(getJoueurs(), getJoueurChoisi())
         return ;
       }else{
         etat = nouvelleManche(etat)

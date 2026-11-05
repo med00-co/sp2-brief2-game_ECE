@@ -179,3 +179,8 @@ export const resultatFinal = (etat)=>{
         return "égalité"
     }
 }
+// nghyr ra9m lgroup li rani fih daba mn 4
+export const getGroupe = (manche) =>{
+    return Math.ceil(manche / 3)
+    
+}

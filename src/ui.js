@@ -1,3 +1,6 @@
+import { getCamp,  } from "./game.js";
+
+
 export const afficherErreur = (idElement, message) => {
   document.getElementById(idElement).textContent = message;
 };
@@ -58,4 +61,128 @@ export const afficherSection = (nom) =>{
       sect.classList.remove('hidden')
     }
   })
+}
+
+// hadi li ghan3rd biha m3lomat dlo3ba
+export const afficherInfosPartie = (etat)=>{
+  const camp = getCamp(etat.manche)
+
+  document.getElementById('info-manche').textContent = etat.manche
+  document.getElementById('info-camp').textContent = camp === "empereur" ? "Empereur" : "Esclave"
+  document.getElementById('score-joueur').textContent = etat.scoreJoueur
+  document.getElementById('score-ordi').textContent = etat.scoreOrdi
+}
+
+// kat3rd lbita9at li kaynin fyd dljoueur
+export const afficherMainJoueur = (main)=>{
+  const contenur = document.getElementById('main-joueur')
+
+  contenur.innerHTML = main.map((carte , index) => `
+      <button type="button" data-index="${index}"
+      class="carte-joueur w-20 h-28 rounded-lg border-2 border-empereur/60 bg-carte shadow-lg 
+             hover:scale-105 hover:border-empereur transition cursor-pointer
+             flex items-center justify-center font-titre font-bold text-sm uppercase
+             ${carte === "empereur" ? "text-empereur" : carte === "esclave" ? "text-esclave" : "text-citoyen"}">
+             <img src="./assets/cards/${carte}.jpg" alt="a card of ${carte}" class="w-full h-full">
+      </button>
+  `).join("")
+}
+
+// kat3rd les cartes li kaynin 3nd l'Ordi
+export const afficherMainOrdi = (main) => {
+  const content = document.getElementById('main-ordi')
+
+  content.innerHTML = main.map(()=> `
+   <div class="w-20 h-28 rounded-lg border border-white/20 bg-black/50 shadow-md
+                flex items-center justify-center text-white/30 text-2xl">
+      <img src="./assets/cards/backCart.jpg" alt="back of card " class="w-full h-full">
+    </div>
+  `).join("")
+}
+
+// affiche les cartes jouées dans le milieu  
+export const afficherCartesJouees = (carteJoueur, carteOrdi) => {
+  const zoneJoueur = document.getElementById("carte-joueur-jouee")
+  const zoneOrdi = document.getElementById("carte-ordi-jouee")
+
+  zoneJoueur.innerHTML = `<img src="./assets/cards/${carteJoueur}.jpg" alt="${carteJoueur}" class="w-full h-full">`
+  zoneJoueur.className = `w-20 h-28 rounded-lg border-2 flex items-center justify-center 
+                          font-titre font-bold uppercase text-sm
+                          ${carteJoueur === "empereur" ? "border-empereur text-empereur bg-empereur/20" : 
+                            carteJoueur === "esclave" ? "border-esclave text-esclave bg-esclave/20" : 
+                            "border-citoyen text-citoyen bg-citoyen/20"}`;
+
+  zoneOrdi.innerHTML = `<img src="./assets/cards/${carteOrdi}.jpg" alt="${carteOrdi}" class="w-full h-full">`
+  zoneOrdi.className = `w-20 h-28 rounded-lg border-2 flex items-center justify-center 
+                        font-titre font-bold uppercase text-sm
+                        ${carteOrdi === "empereur" ? "border-empereur text-empereur bg-empereur/20" : 
+                          carteOrdi === "esclave" ? "border-esclave text-esclave bg-esclave/20" : 
+                          "border-citoyen text-citoyen bg-citoyen/20"}`;
+}
+
+// elle supprime les cartes jouées du milieu pour jouer une autre fois aprés le résultat
+export const viderCartesJouees = () => {
+  const zoneJoueur = document.getElementById("carte-joueur-jouee")
+  const zoneOrdi = document.getElementById("carte-ordi-jouee")
+
+  zoneJoueur.textContent = "";
+  zoneJoueur.className = "w-20 h-28 rounded-lg border border-white/20 bg-black/40";
+
+  zoneOrdi.textContent = "";
+  zoneOrdi.className = "w-20 h-28 rounded-lg border border-white/20 bg-black/40";
+
+  document.getElementById('resultat-duel').textContent = ""
+}
+
+// kat afficher resultat
+export const afficherResultatDuel = (resultat) => {
+  const el = document.getElementById("resultat-duel")
+
+  if(resultat === "victoire"){
+    el.textContent = "victoire !"
+    el.className = "text-center text-lg font-titre font-bold min-h-8 mb-6 text-green-400"
+  }
+  else if(resultat === "défaite"){
+    el.textContent = "défaite..."
+    el.className = "text-center text-lg font-titre font-bold min-h-8 mb-6 text-red-400"
+  }
+  else{
+    el.textContent = "= Egalité ="
+    el.className = "text-center text-lg font-titre font-bold min-h-8 mb-6 text-yellow-400"
+  }
+}
+
+// supprime le message de choisir un joueur ,et affiche la zone de jeu
+export const afficherZoneJeu = (joueur) =>{
+  const messageChoisirJoueur = document.getElementById('msg-pas-joueur')
+
+  const zoneLancer = document.getElementById('zone-lancer')
+  const zoneJeu = document.getElementById('zone-jeu')
+  const zoneFin = document.getElementById('zone-fin')
+  const array = [zoneLancer , zoneJeu , zoneFin, messageChoisirJoueur]
+
+  array.forEach((zn) =>{
+    zn.classList.add('hidden')
+    if(!joueur){
+      messageChoisirJoueur.classList.remove('hidden')
+    }else if(joueur) {
+      zoneLancer.classList.remove('hidden')
+    }
+  })
+}
+
+// dans la fin du match , il affiche la résultat
+export const afficherFinPartie = (resultat, scoreJ, scoreOr) => {
+  const zoneJeu = document.getElementById('zone-jeu')
+  const zoneFin = document.getElementById('zone-fin')  
+  const messageFin = document.getElementById('msg-fin')
+
+  zoneJeu.classList.add('hidden')
+  zoneFin.classList.remove('hidden')
+
+ messageFin.innerHTML = `
+ ${resultat == "victoire" ? "§§ VICTOIRE ! §§" : resultat == "défaite" ? "GAME OVER..." : "Egalité"} 
+ <br> ${scoreJ} - ${scoreOr} 
+ `
+
 }

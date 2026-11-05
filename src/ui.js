@@ -1,4 +1,4 @@
-import { getCamp,  } from "./game.js";
+import { getCamp, premierJoueur , getGroupe  } from "./game.js";
 
 
 export const afficherErreur = (idElement, message) => {
@@ -18,7 +18,7 @@ export const afficherJoueurs = (liste , idChoisi = null) => {
     vide.classList.add('hidden')
   }
   conteneur.innerHTML = liste.map(({ id, nickname, avatar }) => `
-  <article class="player overflow-hidden rounded-xl border border-empereur/40 bg-carte/80 backdrop-blur-sm shadow-lg shadow-black/40 transition hover:-translate-y-1 hover:shadow-xl ${id === idChoisi ? "ring-4 ring-orange-500" : ""}">
+  <article class="player overflow-hidden rounded-xl border border-empereur/40 bg-carte/80 backdrop-blur-sm shadow-lg shadow-black/40 transition hover:-translate-y-1 hover:shadow-xl ${id === idChoisi ? "ring-4 ring-green-300" : ""}">
 
     <div class="h-16 bg-linear-to-r from-empereur/60 via-empereur/30 to-esclave/30"></div>
 
@@ -71,6 +71,10 @@ export const afficherInfosPartie = (etat)=>{
   document.getElementById('info-camp').textContent = camp === "empereur" ? "Empereur" : "Esclave"
   document.getElementById('score-joueur').textContent = etat.scoreJoueur
   document.getElementById('score-ordi').textContent = etat.scoreOrdi
+
+  // hado dyal lgroupe w la3ib lwl
+  document.getElementById('info-group').textContent = getGroupe(etat.manche)
+  document.getElementById('info-premier').textContent = premierJoueur(etat.indexDuel) == getCamp(etat.manche) ? "Toi" : "Ordinateur"
 }
 
 // kat3rd lbita9at li kaynin fyd dljoueur
@@ -182,7 +186,7 @@ export const afficherFinPartie = (resultat, scoreJ, scoreOr) => {
 
  messageFin.innerHTML = `
  ${resultat == "victoire" ? "§§ VICTOIRE ! §§" : resultat == "défaite" ? "GAME OVER..." : "Egalité"} 
- <br> ${scoreJ} - ${scoreOr} 
+ <br><br> ${scoreJ} - ${scoreOr} 
  `
 
 }

@@ -37,7 +37,7 @@
 
 
   <main class="max-w-7xl mx-auto px-4">
-    <section id="profils" class="text-white grid grid-cols-1 md:grid-cols-3 gap-16 my-10 justify-between">
+    <section id="profils" class="text-white grid grid-cols-1 md:grid-cols-3 gap-16 my-6 justify-between">
       <div id="bloc-formulaire" class="bg-carte/80 border border-empereur/40 p-6 rounded-lg h-fit shadow-xl shadow-black/40 backdrop-blur-sm grid grid-cols-1 items-center gap-6">
         <h2 id="titre-formulaire" class="border-b-2 border-empereur text-empereur font-bold font-titre rounded-lg text-center pb-2 text-xl tracking-widest uppercase">Ajouter un joueur</h2>
 
@@ -103,7 +103,7 @@
 
 
 <!-- section 2 : game --------------------------------------------------- -->
-    <section id="jeu" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm my-10">
+    <section id="jeu" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm my-6">
       <div id="msg-pas-joueur"  class="text-center py-10  ">
         <p class="text-xl text-white/80 mb-4 ">Choisis un joueur pour jouer</p>
       </div>
@@ -184,7 +184,53 @@
       </div>
     </section>
 
-    <section id="historique" class="hidden"></section> 
+    <!-- section 3: ---------------------------------------------------------------------------- -->
+    <section id="historique" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm shadow-xl shadow-black/40 my-6">
+      
+      <h2 class="border-b-2 border-empereur text-empereur font-bold font-titre py-2 mb-6 rounded-lg text-xl tracking-widest uppercase text-center">
+        Historique des parties
+      </h2>
+      
+      <div class="flex flex-col md:flex-row gap-3 mb-8">
+
+        <div class="flex-1">
+           <input type="search" id="cherche-partie" placeholder="chercher une partie.." 
+           class="w-full bg-fond/60 border border-empereur/40 rounded-md px-4 py-2.5 text-texte
+               placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-empereur
+               transition">
+        </div>
+        
+
+        <select name="resultFilter" id="filter-par-result" 
+        class="bg-fond/60 border border-empereur/40 rounded-md px-4 py-2.5 text-texte
+             focus:outline-none focus:ring-2 focus:ring-empereur cursor-pointer
+             appearance-none min-w-40"
+        >
+          <option value="toutes">toutes</option>
+          <option  value="victoire">victoire</option>
+          <option  value="défaite">défaite</option>
+          <option  value="égalité">égalité</option>
+        </select>
+
+        <select name="dateFilter" id="filter-par-date" 
+        class="bg-fond/60 border border-empereur/40 rounded-md px-4 py-2.5 text-texte
+             focus:outline-none focus:ring-2 focus:ring-empereur cursor-pointer
+             appearance-none min-w-44"
+        >
+          <option  value="tout">tout</option>
+          <option  value="aujourdhui">aujourd'hui</option>
+          <option  value="7jours">7 jours avant</option>
+        </select>
+      </div>
+
+      <div id="parties" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      </div>
+
+      <p id="aucun-partie" class="hidden text-center text-white/50 italic border border-dashed border-white/20 rounded-lg p-10 mt-6">
+        Aucune partie trouvée
+      </p>
+    </section> 
   </main>
   
 </body>

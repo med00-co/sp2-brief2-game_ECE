@@ -1,12 +1,12 @@
 import {
   validerPseudo, ajouterJoueur, getJoueurs,
   choisirJoueur, getJoueurChoisi, getJoueurParId,
-  supprimerJoueur
+  supprimerJoueur , modifierJoueur
 } from "./players.js";
 
 import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection, afficherInfosPartie , 
   afficherMainJoueur , afficherMainOrdi  , afficherCartesJouees , afficherResultatDuel , viderCartesJouees,
-  afficherZoneJeu , afficherFinPartie, afficherParties,
+  afficherZoneJeu , afficherFinPartie, afficherParties, remplirFormulaire , renitialiserFormulaire
 } from "./ui.js";
 
 import {  creerPartie , jouerDuel , nouvelleManche , 
@@ -24,19 +24,31 @@ const form = document.getElementById("form-joueur");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
    
+  const idModif = document.getElementById('joueur-id').value
   const pseudo = document.getElementById("pseudo").value.trim();
   const avatarChoisi = document.querySelector('input[name="avatar"]:checked');
 
-  const erreurPseudo = validerPseudo(pseudo);
+  const erreurPseudo = validerPseudo(pseudo , idModif || null);
   afficherErreur("erreur-pseudo", erreurPseudo);
   afficherErreur("erreur-avatar", avatarChoisi ? "" : "Choisis un avatar");
 
   if (erreurPseudo || !avatarChoisi) return;
+  
+  if(idModif ){
+    modifierJoueur(idModif , {nickname: pseudo, avatar: avatarChoisi.value})
+  }
+  else{
+    ajouterJoueur({ nickname: pseudo, avatar: avatarChoisi.value });
+  }
 
-  ajouterJoueur({ nickname: pseudo, avatar: avatarChoisi.value });
+  
+
   afficherJoueurs(getJoueurs(), getJoueurChoisi());
-  form.reset();
+  afficherJoueurChoisi(getJoueurParId(getJoueurChoisi()))
+  rafraichirHistorique()
+  renitialiserFormulaire()
 });
+document.getElementById('btn-annuler').addEventListener('click' , renitialiserFormulaire)
 
 const listeJoueurs = document.getElementById("liste-joueurs"); 
 
@@ -58,6 +70,9 @@ listeJoueurs.addEventListener("click", (event) => {
     afficherJoueurs(getJoueurs(), getJoueurChoisi())
     afficherJoueurChoisi(getJoueurParId(getJoueurChoisi()))
     rafraichirHistorique()
+  }
+  if(action === "modifier"){
+    remplirFormulaire(getJoueurParId(id))
   }
 });
 
@@ -199,5 +214,7 @@ listParties.addEventListener('click', function(event){
   }
 
 })
+
+
 
 

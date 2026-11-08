@@ -43,13 +43,24 @@ export const getJoueurParId = (id) => {
 
 // supprimer un joueur 
 export const supprimerJoueur = (id) => {
-  const supJ = getJoueurs().filter((g) => g.id == id)
+  
   const playersFiltre = getJoueurs().filter((g) => g.id !== id)
   ecrire(CLE_JOUEURS, playersFiltre)
 
-  if(getJoueurChoisi() == supJ){
+  if(getJoueurChoisi() == getJoueurParId(id)){
     ecrire(CLE_CHOISI, null)
   }
 }
 
+// Modifier un joueur
+export const modifierJoueur = (id, changements) => {
+  const joueursModifies = getJoueurs().map((p)=>{
+     if(p.id == id){
+      return {...p, ...changements}
+     }  
+     return p
+  }) 
+
+  ecrire(CLE_JOUEURS, joueursModifies);
+} 
 

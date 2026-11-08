@@ -257,3 +257,39 @@ export const afficherParties = (liste) => {
   `).join("")
 
 }
+
+export const remplirFormulaire = (joueur) => {
+  document.getElementById('pseudo').value = joueur.nickname
+  document.getElementById('joueur-id').value = joueur.id
+  
+
+  const radio = document.querySelector(`input[name="avatar"][value="${joueur.avatar}"] `)
+  if(radio){
+    radio.checked = true
+  }
+
+  document.getElementById('titre-formulaire').textContent = "Modifier un joueur"
+
+  let btnValider = document.getElementById('btn-valider')
+  btnValider.textContent = "Modifier"
+  btnValider.classList.remove('bg-empereur' , 'hover:bg-empereur/80')
+  btnValider.classList.add('bg-citoyen/90', 'hover:text-white', 'hover:bg-citoyen/70')
+
+  document.getElementById('btn-annuler').classList.remove('hidden')
+}
+
+export const renitialiserFormulaire = ()=>{
+  const form = document.getElementById("form-joueur")
+  form.reset()
+  document.getElementById('joueur-id').value  = "" ;
+  document.getElementById('titre-formulaire').textContent = "Ajouter un joueur"
+  let btnValider = document.getElementById('btn-valider')
+  btnValider.textContent = "Ajouter"
+  btnValider.classList.add('bg-empereur' , 'hover:bg-empereur/80')
+  btnValider.classList.remove('bg-citoyen/90', 'hover:text-white', 'hover:bg-citoyen/50')
+  
+
+  afficherErreur("erreur-pseudo", "");
+  afficherErreur("erreur-avatar", "");
+  document.getElementById('btn-annuler').classList.add('hidden')
+}

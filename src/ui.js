@@ -1,5 +1,6 @@
 import { getCamp, premierJoueur , getGroupe  } from "./game.js";
-import { compterParties } from "./history.js";
+import { compterParties ,  nomJoueur} from "./history.js";
+import { getJoueurParId } from "./players.js";
 
 
 export const afficherErreur = (idElement, message) => {
@@ -189,5 +190,70 @@ export const afficherFinPartie = (resultat, scoreJ, scoreOr) => {
  ${resultat == "victoire" ? "§§ VICTOIRE ! §§" : resultat == "défaite" ? "GAME OVER..." : "Egalité"} 
  <br><br> ${scoreJ} - ${scoreOr} 
  `
+
+}
+
+// partie history : afficher parties 
+export const afficherParties = (liste) => {
+  const p = document.getElementById('aucune-partie')
+  const listeParties = document.getElementById('liste-parties')
+
+  if(liste.length === 0){
+    p.classList.remove('hidden')
+  }else{
+    p.classList.add('hidden')
+  }
+  
+  listeParties.innerHTML = liste.map(({ id, playerId, date, playerScore , computerScore, result }) =>  `
+  <article class="group relative flex flex-col gap-4 bg-carte/80 border border-empereur/40 rounded-xl p-5 
+                  shadow-lg shadow-black/30 backdrop-blur-sm
+                  hover:border-empereur/70 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+
+     <div class="flex items-center justify-between gap-3">
+      <span class="text-xs uppercase tracking-widest text-white/50">
+        ${date.replace("T", " ").slice(0, 16)}
+      </span>
+      
+      <span class="px-3 py-1 rounded-full text-xs font-titre font-bold uppercase tracking-wide
+        ${result === "victoire" 
+          ? "bg-green-500/20 text-green-400 border border-green-500/40" 
+          : result === "défaite" 
+            ? "bg-red-500/20 text-red-400 border border-red-500/40" 
+            : "bg-citoyen/20 text-citoyen border border-citoyen/40"}">
+        ${result}
+      </span>
+
+     </div> 
+
+     <div class="flex items-center justify-between gap-4">
+      <div>
+        <p class="font-titre font-bold text-lg text-texte tracking-wide">
+          ${nomJoueur(playerId)}
+        </p>
+        <p class="text-sm text-white/50 mt-0.5">Joueur</p>
+      </div>
+      
+      <div class="text-right">
+        <p class="font-titre font-bold text-2xl">
+          <span class="text-empereur">${playerScore}</span>
+          <span class="text-white/40 mx-1">-</span>
+          <span class="text-esclave">${computerScore}</span>
+        </p>
+        <p class="text-xs text-white/40 mt-0.5">Score</p>
+      </div>
+    </div>
+    
+     <button type="button" 
+            data-id="${id}" 
+            data-action="supprimer-partie"
+            class="mt-1 w-full cursor-pointer rounded-md bg-esclave/15 py-2 text-sm font-titre font-bold 
+                   uppercase tracking-wide text-red-300 border border-esclave/30
+                   transition hover:bg-esclave/40 hover:text-white active:scale-95
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-esclave">
+      Supprimer
+    </button>
+    
+  </article>
+  `).join("")
 
 }

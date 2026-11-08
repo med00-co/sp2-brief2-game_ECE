@@ -10,7 +10,7 @@ import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection,
 } from "./ui.js";
 
 import {  creerPartie , jouerDuel , nouvelleManche , 
-  estTerminee , resultatFinal,
+  estTerminee , resultatFinal, estTourOrdi , 
  } from "./game.js";
 
 import { enregistrerPartie, filtrerParties, supprimerPartie  } from "./history.js";
@@ -130,6 +130,10 @@ laMainJoueur.addEventListener('click', (event)=>{
     verouille = true
     let index = carteChoisi.dataset.index
     const rapport  = jouerDuel(etat , Number(index))
+    
+    etat = rapport.newEtat
+    afficherMainJoueur(etat.mainJoueur)
+    afficherMainOrdi(etat.mainOrdi)
 
     afficherCarteJoueurSeule(rapport.cartePlayer);
 

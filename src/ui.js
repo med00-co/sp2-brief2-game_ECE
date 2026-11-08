@@ -68,14 +68,22 @@ export const afficherSection = (nom) =>{
 // hadi li ghan3rd biha m3lomat dlo3ba
 export const afficherInfosPartie = (etat)=>{
   const camp = getCamp(etat.manche)
+  
 
   document.getElementById('info-manche').textContent = etat.manche
   document.getElementById('info-camp').textContent = camp === "empereur" ? "Empereur" : "Esclave"
   document.getElementById('score-joueur').textContent = etat.scoreJoueur
   document.getElementById('score-ordi').textContent = etat.scoreOrdi
 
-  document.getElementById('main-ordi').classList.add = camp === "empereur" ? "bg-empereur/40" : "bg-esclave/40"
-  document.getElementById('main-joueur').classList.add = camp === "empereur" ? "bg-empereur/40" : "bg-esclave/40"
+  const zoneOrdi = document.getElementById('main-ordi')
+  const zoneJoueur = document.getElementById('main-joueur')
+
+  zoneOrdi.classList.remove('bg-empereur/40', "bg-esclave")
+  zoneJoueur.classList.remove('bg-empereur/40', "bg-esclave")
+
+  const classeCamp =  camp === "empereur" ? "bg-empereur/40" : "bg-esclave/40"
+  zoneOrdi.classList.add(classeCamp)
+  zoneJoueur.classList.add(classeCamp)
 
   // hado dyal lgroupe w la3ib lwl
   document.getElementById('info-group').textContent = getGroupe(etat.manche)

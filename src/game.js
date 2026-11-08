@@ -118,7 +118,11 @@ export const jouerDuel = (etat, indexCarte)=>{
         return rapport ; 
     }
     else if(duelResultat === "victoire"){
-        let newEtat = {...etat, scoreJoueur : etat.scoreJoueur + points(campPlayer) }
+
+        let newMainJoueur = retirerCarte(etat.mainJoueur, indexCarte);
+        let newMainOrdi = retirerCarte(etat.mainOrdi, indexCarteOrdi);
+
+        let newEtat = {...etat, scoreJoueur : etat.scoreJoueur + points(campPlayer) , mainJoueur: newMainJoueur, mainOrdi: newMainOrdi, indexDuel: etat.indexDuel + 1,}
         let rapport = {
             newEtat ,
             cartePlayer ,
@@ -130,7 +134,11 @@ export const jouerDuel = (etat, indexCarte)=>{
         return rapport ; 
     }
     else if(duelResultat === "défaite"){
-        let newEtat = {...etat, scoreOrdi : etat.scoreOrdi + points(campOrdi) }
+
+        let newMainJoueur = retirerCarte(etat.mainJoueur, indexCarte);
+        let newMainOrdi = retirerCarte(etat.mainOrdi, indexCarteOrdi);
+
+        let newEtat = {...etat, scoreOrdi : etat.scoreOrdi + points(campOrdi), mainJoueur: newMainJoueur, mainOrdi: newMainOrdi, indexDuel: etat.indexDuel + 1, }
         let rapport = {
             newEtat ,
             cartePlayer ,
@@ -184,3 +192,10 @@ export const getGroupe = (manche) =>{
     return Math.ceil(manche / 3)
     
 }
+
+// chkon ghaybda lwl 
+export const estTourOrdi = (etat) => {
+  const campQuiCommence = premierJoueur(etat.indexDuel);
+  const campJoueur = getCamp(etat.manche);
+  return campQuiCommence !== campJoueur;
+};

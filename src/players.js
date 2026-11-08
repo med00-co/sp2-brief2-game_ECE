@@ -47,7 +47,7 @@ export const supprimerJoueur = (id) => {
   const playersFiltre = getJoueurs().filter((g) => g.id !== id)
   ecrire(CLE_JOUEURS, playersFiltre)
 
-  if(getJoueurChoisi() == getJoueurParId(id)){
+  if(getJoueurChoisi() === id ){
     ecrire(CLE_CHOISI, null)
   }
 }

@@ -74,6 +74,9 @@ export const afficherInfosPartie = (etat)=>{
   document.getElementById('score-joueur').textContent = etat.scoreJoueur
   document.getElementById('score-ordi').textContent = etat.scoreOrdi
 
+  document.getElementById('main-ordi').classList.add = camp === "empereur" ? "bg-empereur/40" : "bg-esclave/40"
+  document.getElementById('main-joueur').classList.add = camp === "empereur" ? "bg-empereur/40" : "bg-esclave/40"
+
   // hado dyal lgroupe w la3ib lwl
   document.getElementById('info-group').textContent = getGroupe(etat.manche)
   document.getElementById('info-premier').textContent = premierJoueur(etat.indexDuel) == getCamp(etat.manche) ? "Toi" : "Ordinateur"
@@ -86,7 +89,7 @@ export const afficherMainJoueur = (main)=>{
   contenur.innerHTML = main.map((carte , index) => `
       <button type="button" data-index="${index}"
       class="carte-joueur w-20 h-28 rounded-lg border-2 border-empereur/60 bg-carte shadow-lg 
-             hover:scale-105 hover:border-empereur transition cursor-pointer
+             hover:scale-105 hover:border-empereur transition cursor-pointer hover:-translate-y-3
              flex items-center justify-center font-titre font-bold text-sm uppercase
              ${carte === "empereur" ? "text-empereur" : carte === "esclave" ? "text-esclave" : "text-citoyen"}">
              <img src="./assets/cards/${carte}.jpg" alt="a card of ${carte}" class="w-full h-full">
@@ -100,7 +103,7 @@ export const afficherMainOrdi = (main) => {
 
   content.innerHTML = main.map(()=> `
    <div class="w-20 h-28 rounded-lg border border-white/20 bg-black/50 shadow-md
-                flex items-center justify-center text-white/30 text-2xl">
+                flex items-center justify-center text-white/30 text-2xl first:ml-0 -ml-8  ">
       <img src="./assets/cards/backCart.jpg" alt="back of card " class="w-full h-full">
     </div>
   `).join("")
@@ -112,19 +115,46 @@ export const afficherCartesJouees = (carteJoueur, carteOrdi) => {
   const zoneOrdi = document.getElementById("carte-ordi-jouee")
 
   zoneJoueur.innerHTML = `<img src="./assets/cards/${carteJoueur}.jpg" alt="${carteJoueur}" class="w-full h-full">`
-  zoneJoueur.className = `w-20 h-28 rounded-lg border-2 flex items-center justify-center 
-                          font-titre font-bold uppercase text-sm
+  zoneJoueur.className = `w-24 h-36 sm:w-28 sm:h-40 rounded-lg border-2 flex items-center justify-center animate-flip
+                          font-titre font-bold uppercase text-sm overflow-hidden  
                           ${carteJoueur === "empereur" ? "border-empereur text-empereur bg-empereur/20" : 
                             carteJoueur === "esclave" ? "border-esclave text-esclave bg-esclave/20" : 
                             "border-citoyen text-citoyen bg-citoyen/20"}`;
 
   zoneOrdi.innerHTML = `<img src="./assets/cards/${carteOrdi}.jpg" alt="${carteOrdi}" class="w-full h-full">`
-  zoneOrdi.className = `w-20 h-28 rounded-lg border-2 flex items-center justify-center 
-                        font-titre font-bold uppercase text-sm
+  zoneOrdi.className = `w-24 h-36 sm:w-28 sm:h-40 rounded-lg border-2 flex items-center justify-center animate-flip
+                        font-titre font-bold uppercase text-sm overflow-hidden 
                         ${carteOrdi === "empereur" ? "border-empereur text-empereur bg-empereur/20" : 
                           carteOrdi === "esclave" ? "border-esclave text-esclave bg-esclave/20" : 
                           "border-citoyen text-citoyen bg-citoyen/20"}`;
 }
+
+
+export const afficherCarteJoueurSeule = (carteJoueur) => {
+  const zoneJoueur = document.getElementById("carte-joueur-jouee")
+  const zoneOrdi = document.getElementById("carte-ordi-jouee")
+
+  zoneJoueur.innerHTML = `<img src="./assets/cards/${carteJoueur}.jpg" alt="${carteJoueur}" class="w-full h-full">`
+  zoneJoueur.className = `w-24 h-36 sm:w-28 sm:h-40 rounded-lg border-2 flex items-center justify-center 
+                          font-titre font-bold uppercase text-sm animate-flip overflow-hidden
+                          ${carteJoueur === "empereur" ? "border-empereur text-empereur bg-empereur/20" : 
+                            carteJoueur === "esclave" ? "border-esclave text-esclave bg-esclave/20" : 
+                            "border-citoyen text-citoyen bg-citoyen/20"}`;
+
+  
+  zoneOrdi.innerHTML = ""
+  zoneOrdi.className = "w-24 h-36 sm:w-28 sm:h-40 rounded-lg border border-white/20 overflow-hidden";
+}
+
+
+
+
+
+
+
+
+
+
 
 // elle supprime les cartes jouées du milieu pour jouer une autre fois aprés le résultat
 export const viderCartesJouees = () => {
@@ -132,10 +162,10 @@ export const viderCartesJouees = () => {
   const zoneOrdi = document.getElementById("carte-ordi-jouee")
 
   zoneJoueur.textContent = "";
-  zoneJoueur.className = "w-20 h-28 rounded-lg border border-white/20 bg-black/40";
+  zoneJoueur.className = "w-24 h-36 sm:w-28 sm:h-40 rounded-lg border border-white/20 bg-black/40";
 
   zoneOrdi.textContent = "";
-  zoneOrdi.className = "w-20 h-28 rounded-lg border border-white/20 bg-black/40";
+  zoneOrdi.className = "w-24 h-36 sm:w-28 sm:h-40 rounded-lg border border-white/20 bg-black/40";
 
   document.getElementById('resultat-duel').textContent = ""
 }
@@ -186,10 +216,19 @@ export const afficherFinPartie = (resultat, scoreJ, scoreOr) => {
   zoneJeu.classList.add('hidden')
   zoneFin.classList.remove('hidden')
 
- messageFin.innerHTML = `
- ${resultat == "victoire" ? "§§ VICTOIRE ! §§" : resultat == "défaite" ? "GAME OVER..." : "Egalité"} 
- <br><br> ${scoreJ} - ${scoreOr} 
- `
+
+ if(resultat === "victoire"){
+    messageFin.innerHTML = `§§ VICTOIRE ! §§  <br><br> ${scoreJ} - ${scoreOr} `
+    messageFin.className = "text-4xl md:text-6xl font-titre font-bold mb-4 uppercase tracking-widest rounded-lg border-empereur text-empereur bg-empereur/10"
+  }
+  else if(resultat === "défaite"){
+    messageFin.innerHTML = `GAME OVER...  <br><br> ${scoreJ} - ${scoreOr} `
+    messageFin.className = "text-4xl md:text-6xl font-titre font-bold mb-4 uppercase tracking-widest rounded-lg border-esclave text-red-300 bg-esclave/10"
+  }
+  else{
+    messageFin.innerHTML = `Egalité  <br><br> ${scoreJ} - ${scoreOr} `
+    messageFin.className = "text-4xl md:text-6xl font-titre font-bold mb-4 uppercase tracking-widest rounded-lg border-citoyen text-citoyen bg-citoyen/10"
+  }
 
 }
 

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @theme {
   --color-empereur: #d4af37;
   --color-fond: #14110f;
@@ -8,4 +9,17 @@
   --color-texte: #f3ead7;
   --color-succes: #3f9b5f;
   --font-titre: "Cinzel", serif;
+
+  --animate-flip: flip 0.45s ease-out;
+}
+
+@keyframes flip {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0.3;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
 }

@@ -6,7 +6,7 @@ import {
 
 import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection, afficherInfosPartie , 
   afficherMainJoueur , afficherMainOrdi  , afficherCartesJouees , afficherResultatDuel , viderCartesJouees,
-  afficherZoneJeu , afficherFinPartie, afficherParties, remplirFormulaire , renitialiserFormulaire
+  afficherZoneJeu , afficherFinPartie, afficherParties, remplirFormulaire , renitialiserFormulaire, afficherCarteJoueurSeule, 
 } from "./ui.js";
 
 import {  creerPartie , jouerDuel , nouvelleManche , 
@@ -131,8 +131,17 @@ laMainJoueur.addEventListener('click', (event)=>{
     let index = carteChoisi.dataset.index
     const rapport  = jouerDuel(etat , Number(index))
 
-    afficherCartesJouees(rapport.cartePlayer , rapport.carteOrdi)
-    afficherResultatDuel(rapport.resultat)
+    afficherCarteJoueurSeule(rapport.cartePlayer);
+
+    setTimeout(() => {
+      afficherCartesJouees(rapport.cartePlayer, rapport.carteOrdi);
+      
+    }, 800);
+    
+    setTimeout(()=>{
+      afficherResultatDuel(rapport.resultat);
+    }, 1400)
+
     setTimeout(()=>{
       etat = rapport.newEtat
       const resultat = resultatFinal(etat)
@@ -150,7 +159,7 @@ laMainJoueur.addEventListener('click', (event)=>{
     viderCartesJouees()
     refraichir()
     verouille = false
-    },1500)
+    },2500)
 
     
 })

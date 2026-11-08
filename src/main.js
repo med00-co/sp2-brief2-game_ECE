@@ -1,6 +1,7 @@
 import {
   validerPseudo, ajouterJoueur, getJoueurs,
-  choisirJoueur, getJoueurChoisi, getJoueurParId
+  choisirJoueur, getJoueurChoisi, getJoueurParId,
+  supprimerJoueur
 } from "./players.js";
 
 import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection, afficherInfosPartie , 
@@ -49,6 +50,14 @@ listeJoueurs.addEventListener("click", (event) => {
     choisirJoueur(id);
     afficherJoueurs(getJoueurs(), id);
     afficherJoueurChoisi(getJoueurParId(id));
+  }
+  if(action === "supprimer"){
+    let confirmer = confirm('Voullez vous supprimer ce Joueur ? ')
+    if(!confirmer) return ;
+    supprimerJoueur(id)
+    afficherJoueurs(getJoueurs(), getJoueurChoisi())
+    afficherJoueurChoisi(getJoueurParId(getJoueurChoisi()))
+    rafraichirHistorique()
   }
 });
 
@@ -190,3 +199,5 @@ listParties.addEventListener('click', function(event){
   }
 
 })
+
+

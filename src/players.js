@@ -41,3 +41,15 @@ export const getJoueurParId = (id) => {
     return getJoueurs().find((je)=> je.id == id)
 }
 
+// supprimer un joueur 
+export const supprimerJoueur = (id) => {
+  const supJ = getJoueurs().filter((g) => g.id == id)
+  const playersFiltre = getJoueurs().filter((g) => g.id !== id)
+  ecrire(CLE_JOUEURS, playersFiltre)
+
+  if(getJoueurChoisi() == supJ){
+    ecrire(CLE_CHOISI, null)
+  }
+}
+
+

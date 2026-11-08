@@ -5,13 +5,14 @@ import {
 
 import { afficherErreur, afficherJoueurs, afficherJoueurChoisi, afficherSection, afficherInfosPartie , 
   afficherMainJoueur , afficherMainOrdi  , afficherCartesJouees , afficherResultatDuel , viderCartesJouees,
-  afficherZoneJeu , afficherFinPartie,
+  afficherZoneJeu , afficherFinPartie, afficherParties,
 } from "./ui.js";
 
 import {  creerPartie , jouerDuel , nouvelleManche , 
   estTerminee , resultatFinal,
  } from "./game.js";
-import { enregistrerPartie } from "./history.js";
+
+import { enregistrerPartie, filtrerParties, supprimerPartie  } from "./history.js";
 
 
 
@@ -64,12 +65,16 @@ navs.forEach((nav)=>{
        navs.forEach((n)=>{
         n.className = "px-4 py-1 rounded-md transition hover:bg-empereur/50 font-titre"
        })
-       nav.classList.add('font-bold', 'bg-empereur')
+       nav.classList.remove('hover:bg-empereur/50')
+       nav.classList.add('font-bold', 'bg-empereur', 'hover:bg-empereur/85')
        let navSection = nav.dataset.section
        afficherSection(navSection)
 
-       if(navSection == "jeu" && etat == null){
+       if(navSection === "jeu" && etat == null){
         afficherZoneJeu(getJoueurParId(getJoueurChoisi()))
+       }
+       if(navSection === "historique"){
+        rafraichirHistorique()
        }
    })
 })
@@ -111,6 +116,7 @@ laMainJoueur.addEventListener('click', (event)=>{
       if(estTerminee(etat)){
         afficherFinPartie(resultat, etat.scoreJoueur ,etat.scoreOrdi)
         enregistrerPartie({playerId: getJoueurChoisi() , playerScore: etat.scoreJoueur ,computerScore: etat.scoreOrdi ,result: resultat})
+        rafraichirHistorique()
         afficherJoueurs(getJoueurs(), getJoueurChoisi())
         return ;
       }else{
@@ -136,3 +142,51 @@ btnRejouer.addEventListener('click', function(){
 })
 
 
+
+// rafraichirHistorique -----------
+const rafraichirHistorique = () =>{
+  const recherche = document.getElementById('cherche-partie').value.trim()
+  const resultat = document.getElementById('filter-par-result').value
+  const periode = document.getElementById('filter-par-date').value
+
+  const filtersObject = {
+    recherche,
+    resultat,
+    periode,
+  }
+  
+  afficherParties(filtrerParties(filtersObject))
+}
+
+
+rafraichirHistorique()
+
+const search = document.getElementById('cherche-partie')
+search.addEventListener('input', rafraichirHistorique)
+
+const resultFilter = document.getElementById('filter-par-result')
+resultFilter.addEventListener('change', rafraichirHistorique)
+
+const dateFilter = document.getElementById('filter-par-date')
+dateFilter.addEventListener('change', rafraichirHistorique)
+
+
+const listParties = document.getElementById('liste-parties')
+listParties.addEventListener('click', function(event){
+  let btnSupprimerPartie = event.target.closest('[data-action]')
+  if(!btnSupprimerPartie) return ;
+
+  let  action = btnSupprimerPartie.dataset.action
+  let id = btnSupprimerPartie.dataset.id
+
+  if(action == "supprimer-partie"){
+    let confirmation = confirm("Voullez-vous de supprimer cette partie ?")
+    if(!confirmation) return ;
+
+    supprimerPartie(id)
+    rafraichirHistorique()
+    afficherJoueurs(getJoueurs(), getJoueurChoisi())
+    
+  }
+
+})

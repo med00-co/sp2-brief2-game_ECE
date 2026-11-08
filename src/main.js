@@ -185,8 +185,8 @@ listParties.addEventListener('click', function(event){
 
     supprimerPartie(id)
     rafraichirHistorique()
-    afficherJoueurs(getJoueurs())
-    getJoueurChoisi()
+    afficherJoueurs(getJoueurs(), getJoueurChoisi())
+    
   }
 
 })

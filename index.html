@@ -1,14 +1,237 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emperor, Citizen, Slave</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">  
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+ 
   <link href="./styleCSS/output.css" rel="stylesheet">
   <script type="module" src="./src/main.js"></script>
 </head>
-<body class="">
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+
+<body class="bg-[linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../assets/images/bg.jpg')] bg-cover bg-center min-h-screen text-texte font-texte bg-fixed">          
+  <header class="bg-carte flex flex-wrap justify-between mx-auto max-w-7xl  rounded-md  mt-6 shadow-lg shadow-black/50 backdrop-blur-sm  border border-empereur/40  items-center">
+    <div class="flex flex-wrap px-4 items-center">
+      <img src="./assets/images/logo.png" alt="logo of the game" class="h-18">
+      <div class="flex flex-col">
+        <h1 class="text-texte text-2xl font-titre font-bold py-2 tracking-wide">Emperor, Citizen, Slave</h1>
+        <span id="joueur-actif" class="inline-flex items-center gap-2 w-fit rounded-full bg-empereur/15 border border-empereur/40  px-3 py-0.5 text-xs uppercase tracking-widest text-empereur truncate max-w-48  before:size-2 before:rounded-full before:bg-green-400 before:shrink-0"></span>
+      </div>
+    </div>
+    
+ 
+    <nav class="text-white flex gap-x-8 px-4 py-1 m-4 rounded-lg mr-6 bg-empereur/20 ">
+      <a href="#" class="px-4 py-1 rounded-md transition hover:bg-empereur/50 bg-empereur font-titre font-bold" data-section="profils">Joueurs</a>
+      <a href="#" class="px-4 py-1 rounded-md transition hover:bg-empereur/50 font-titre" data-section="historique">Historique</a>
+      <a href="#" class="px-4 py-1 rounded-md transition hover:bg-empereur/50 font-titre" data-section="jeu">Jouer</a>
+    </nav>
+    
+  </header>
+
+
+  <main class="max-w-7xl mx-auto px-4">
+    <section id="profils" class="text-white grid grid-cols-1 md:grid-cols-3 gap-16 my-6 justify-between">
+      <div id="bloc-formulaire" class="bg-carte/80 border border-empereur/40 p-6 rounded-lg h-fit shadow-xl shadow-black/40 backdrop-blur-sm grid grid-cols-1 items-center gap-6 md:sticky md:top-6">
+        <h2 id="titre-formulaire" class="border-b-2 border-empereur text-empereur font-bold font-titre rounded-lg text-center pb-2 text-xl tracking-widest uppercase">Ajouter un joueur</h2>
+
+        <form id="form-joueur" class="flex flex-col gap-4" novalidate>
+          <input type="hidden" id="joueur-id">
+
+          <label for="pseudo" class="text-sm font-bold tracking-wide">Pseudo</label>
+          <input type="text" id="pseudo" name="pseudo" placeholder="Enter a nickname" class="w-full bg-fond/60 border border-empereur/40 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-empereur">
+          <p id="erreur-pseudo" class="text-sm text-red-400 min-h-5"></p>
+
+          <fieldset class=" grid grid-cols-4 gap-6 justify-items-center  border border-white/10 rounded-lg p-4">
+            <legend class="text-sm font-bold tracking-wide pb-4">Avatar</legend>
+
+            <label>
+              <input type="radio" name="avatar" value="dragon" class="peer sr-only ">
+              <img src="./assets/images/avatars/dragon.jpg" alt="avatar dragon" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+            <label>
+              <input type="radio" name="avatar" value="elephant" class="peer sr-only">
+              <img src="./assets/images/avatars/elephant.jpg" alt="avatar elephant" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+            <label>
+              <input type="radio" name="avatar" value="lion" class="peer sr-only">
+              <img src="./assets/images/avatars/lion.jpg" alt="avatar lion" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+            <label>
+              <input type="radio" name="avatar" value="fox" class="peer sr-only">
+              <img src="./assets/images/avatars/fox.jpg" alt="avatar fox" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+            <label>
+              <input type="radio" name="avatar" value="chicken" class="peer sr-only">
+              <img src="./assets/images/avatars/chicken.jpg" alt="avatar chicken" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+            <label>
+              <input type="radio" name="avatar" value="cat" class="peer sr-only">
+              <img src="./assets/images/avatars/cat.jpg" alt="avatar cat" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+            <label>
+              <input type="radio" name="avatar" value="hamestar" class="peer sr-only">
+              <img src="./assets/images/avatars/hamestar.jpg" alt="avatar hamestar" class="w-14 h-14 rounded-full object-cover peer-checked:ring-4  ring-1 ring-white/20 peer-checked:scale-110  peer-focus-visible:ring-2  peer-checked:ring-empereur cursor-pointer hover:scale-110 transition">
+            </label>
+
+          </fieldset>
+          <p id="erreur-avatar" class="text-sm text-red-400 min-h-5"></p>
+
+          <button type="submit" id="btn-valider" class="bg-linear-to-r from-empereur to-empereur/70 shadow-lg w-full cursor-pointer active:scale-95 disabled:cursor-not-allowed text-fond font-titre font-bold py-2 rounded-md  hover:bg-empereur/80 transition disabled:opacity-50">Ajouter</button>
+          <button type="button" id="btn-annuler"  class="hidden border w-full cursor-pointer active:scale-95  disabled:cursor-not-allowed border-empereur/40 py-2 rounded-md hover:bg-empereur/20 transition">Annuler</button>
+        </form>
+      </div>
+
+      <div id="bloc-liste" class="md:col-span-2 text-center border shadow-xl shadow-black/40 border-empereur/40 backdrop-blur-sm rounded-lg bg-carte/80 p-6 ">
+        <h2 class="border-b-2 border-empereur text-empereur font-bold font-titre py-2 rounded-lg   text-xl tracking-widest uppercase">Joueurs</h2>
+        <p id="aucun-joueur" class="text-white/60 italic   border border-dashed border-white/20 rounded-lg p-8 my-6">Aucun joueur pour le moment. </p>
+        <div id="liste-joueurs" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mt-6"></div>
+      </div>
+    </section>
+
+
+<!-- section 2 : game --------------------------------------------------- -->
+    <section id="jeu" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm my-6">
+      <div id="msg-pas-joueur"  class="text-center py-10  ">
+        <p class="text-xl text-white/80 mb-4 ">Choisis un joueur pour jouer</p>
+      </div>
+      
+      <div id="zone-lancer" class="text-center py-8 hidden ">
+        <button id="btn-lancer" type="button"
+        class="bg-linear-to-r from-empereur/80 via-empereur/20 to-esclave/80 px-8 py-3 rounded-md font-titre font-extrabold text-white-700 text-lg hover:bg-empereur/80 active:scale-95 transition">
+        Lancer une partie
+        </button>
+      </div>
+      
+
+      <div id="zone-jeu" class="hidden">
+
+       <div class="grid grid-cols-2 md:grid-cols-6 gap-2 text-center mb-8">
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Manche</p>
+          <p class="text-xl font-titre font-bold text-empereur"><span id="info-manche">1</span> / 12</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Camp</p>
+          <p id="info-camp" class="text-xl font-titre font-bold text-citoyen">Empereur</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Score Joueur</p>
+          <p id="score-joueur" class="text-xl font-titre font-bold text-empereur">0</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Score Ordi</p>
+          <p id="score-ordi" class="text-xl font-titre font-bold text-esclave">0</p>
+        </div>
+         <!-- info of group and first who'll play -->
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Groupe</p>
+          <p class="text-xl font-titre font-bold text-empereur"><span id="info-group">1</span>/ 4</p>
+        </div>
+
+        <div class="bg-black/30 rounded-lg p-3">
+          <p class="text-xs uppercase tracking-widest text-white/50">Premier Joueur</p>
+          <p id="info-premier" class="text-xl font-titre font-bold text-empereur"></p>
+        </div>
+       </div>
+
+       <div class="mb-6">
+        <p class="text-center text-sm uppercase tracking-widest text-white/40 mb-2">Ordinateur</p>
+        <div id="main-ordi" class="flex justify-center gap-2 flex-wrap first:ml-0 -ml-8"></div>
+       </div>
+
+       <!-- lwsst blassa dl3b -->
+       <div id="zone-duel" class="flex items-center justify-center gap-8 my-8 min-h-36  rounded-2xl bg-black/30 border border-empereur/20 py-6">
+        <div id="carte-joueur-jouee" class="w-24 h-36 sm:w-28 sm:h-40 rounded-lg border border-white/20 bg-black/40"></div>
+
+        <span class="text-2xl font-titre font-bold text-empereur grid place-items-center size-12 rounded-full border border-empereur">VS</span>
+
+        <div id="carte-ordi-jouee" class="w-24 h-36 sm:w-28 sm:h-40 rounded-lg border border-white/20 bg-black/40"></div>
+       </div>
+        <!-- --------------------------- -->
+       <p id="resultat-duel" class="text-center text-lg font-titre font-bold min-h-8 mb-6"></p>
+
+       <div>
+        <p class="text-center text-sm uppercase tracking-widest text-white/40 mb-2">Tes Cartes</p>
+        <div id="main-joueur" class="flex justify-center gap-2 flex-wrap"></div>
+       </div>
+
+      </div>
+
+      
+
+      <div id="zone-fin" class="text-center  hidden  max-w-2xl mx-auto rounded-2xl border-2 p-10 shadow-2xl.">
+         <p id="msg-fin" class="text-4xl md:text-6xl font-titre font-bold mb-4 uppercase tracking-widest"></p>
+         <button id="btn-rejouer" type="button"
+         class="bg-citoyen px-6 py-2 rounded-md font-titre font-bold text-fond hover:bg-citoyen/80 transition">
+          Rejouer
+         </button>
+      </div>
+    </section>
+
+    <!-- section 3: ---------------------------------------------------------------------------- -->
+    <section id="historique" class="hidden bg-carte/80 border border-empereur/40 rounded-lg p-6 backdrop-blur-sm shadow-xl shadow-black/40 my-6">
+      
+      <h2 class="border-b-2 border-empereur text-empereur font-bold font-titre py-2 mb-6 rounded-lg text-xl tracking-widest uppercase text-center">
+        Historique des parties
+      </h2>
+      
+      <div class="flex flex-col md:flex-row gap-3 mb-8">
+
+        <div class="flex-1">
+           <input type="search" id="cherche-partie" placeholder="chercher une partie.." 
+           class="w-full bg-fond/60 border border-empereur/40 rounded-md px-4 py-2.5 text-texte
+               placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-empereur
+               transition">
+        </div>
+        
+
+        <select name="resultFilter" id="filter-par-result" 
+        class="bg-fond/60 border border-empereur/40 rounded-md px-4 py-2.5 text-texte
+             focus:outline-none focus:ring-2 focus:ring-empereur cursor-pointer
+             appearance-none min-w-40"
+        >
+          <option value="toutes">toutes</option>
+          <option  value="victoire">victoire</option>
+          <option  value="défaite">défaite</option>
+          <option  value="égalité">égalité</option>
+        </select>
+
+        <select name="dateFilter" id="filter-par-date" 
+        class="bg-fond/60 border border-empereur/40 rounded-md px-4 py-2.5 text-texte
+             focus:outline-none focus:ring-2 focus:ring-empereur cursor-pointer
+             appearance-none min-w-44"
+        >
+          <option  value="tout">tout</option>
+          <option  value="aujourdhui">aujourd'hui</option>
+          <option  value="7jours">7 jours avant</option>
+        </select>
+      </div>
+
+      <div id="liste-parties" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      </div>
+
+      <p id="aucune-partie" class="hidden text-center text-white/50 italic border border-dashed border-white/20 rounded-lg p-10 mt-6">
+        Aucune partie trouvée
+      </p>
+    </section> 
+  </main>
+  
 </body>
 </html>

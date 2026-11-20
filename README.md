@@ -4,7 +4,7 @@ Application web complète pour un club de jeu de cartes. Les membres créent leu
 
 ## 🔗 Liens
 
-- Site en ligne (GitHub Pages) : <lien>
+- Site en ligne (GitHub Pages) : https://med00-co.github.io/sp2-brief2-game_ECE/
 - Tableau GitHub Projects : https://github.com/users/med00-co/projects/14
 
 
